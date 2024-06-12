@@ -1,4 +1,4 @@
-"""This file contains your country package's metadata and dependencies."""
+"""This file contains metadata and dependencies."""
 
 from setuptools import find_packages, setup
 
@@ -31,41 +31,13 @@ setup(
         ),
     ],
     install_requires=[
-        "click==8.1.3",
-        "h5py",
-        "microdf_python",
         "pandas",
-        "pathlib",
-        "policyengine-core>=2.21.5,<2.22",
-        "pytest",
-        "pytest-dependency",
-        "pyyaml",
-        "requests",
-        "scipy==1.10.1",
-        "synthimpute",
-        "tables==3.8.0",
-        "tabulate",
         "torch",
-        "tqdm",
     ],
     extras_require={
         "dev": [
-            "autopep8",
             "black",
-            "coverage",
-            "furo==2022.9.29",
-            "jupyter-book>=0.15,<0.16",
-            "linecheck",
-            "markupsafe",
-            "plotly",
-            "pydata-sphinx-theme==0.13.1",
-            "setuptools",
-            "sphinx>=5.0,<5.1",
-            "sphinx-argparse",
-            "sphinx-math-dollar",
-            "wheel",
             "yaml-changelog",
-            "survey-enhance",
         ],
     },
     # Windows CI requires Python 3.9.
