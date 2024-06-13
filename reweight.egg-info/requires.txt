@@ -1,0 +1,7 @@
+numpy
+pandas
+torch
+
+[dev]
+black
+yaml-changelog

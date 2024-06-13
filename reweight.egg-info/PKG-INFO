@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: reweight
+Version: 0.0.1
+Summary: Reweighting library for survey data for use with PolicyEngine
+Home-page: https://github.com/PolicyEngine/reweight
+Author: PolicyEngine
+Author-email: hello@policyengine.org
+License: http://www.fsf.org/licensing/licenses/agpl-3.0.html
+Keywords: benefit microsimulation social tax
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: torch
+Provides-Extra: dev
+Requires-Dist: black; extra == "dev"
+Requires-Dist: yaml-changelog; extra == "dev"
+
+# reweight
+
+This library will contain logic for consistently reweighting survey data across the PolicyEngine simulation sofware. 
