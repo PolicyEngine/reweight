@@ -1,6 +1,7 @@
 numpy
 pandas
 torch
+tensorboard
 
 [dev]
 black

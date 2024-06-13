@@ -1,5 +1,9 @@
 import numpy as np
 import torch
+from torch.utils.tensorboard import SummaryWriter
+
+#Initialize a TensorBoard SummaryWriter instance
+writer = SummaryWriter()
 
 # Survey of three records
 

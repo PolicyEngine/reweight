@@ -29,6 +29,7 @@ setup(
         "numpy",
         "pandas",
         "torch",
+        "tensorboard",
     ],
     extras_require={
         "dev": [

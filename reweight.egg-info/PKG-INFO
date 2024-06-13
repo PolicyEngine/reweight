@@ -19,6 +19,7 @@ License-File: LICENSE
 Requires-Dist: numpy
 Requires-Dist: pandas
 Requires-Dist: torch
+Requires-Dist: tensorboard
 Provides-Extra: dev
 Requires-Dist: black; extra == "dev"
 Requires-Dist: yaml-changelog; extra == "dev"
