@@ -31,12 +31,15 @@ optimizer = torch.optim.Adam([log_weights])
 # Training loop
 num_epochs = 20_000
 for epoch in range(num_epochs):
-    optimizer.zero_grad()
     
     # Estimate the targets
     targets_estimate = matrix @ torch.exp(log_weights)
     # Calculate the loss
     loss = torch.mean((targets_estimate - targets) ** 2)
+
+    writer.add_scalar("Loss/train", loss, epoch)
+
+    optimizer.zero_grad()
     
     # Perform backpropagation
     loss.backward()
@@ -47,6 +50,8 @@ for epoch in range(num_epochs):
     # Print loss for every 1000 epochs
     if epoch % 1000 == 0:
         print(f'Epoch {epoch}, Loss: {loss.item()}')
+
+writer.flush()
 
 # Print final weights
 print('Final weights:', np.exp(log_weights.detach().numpy()))
