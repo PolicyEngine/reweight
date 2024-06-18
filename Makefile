@@ -4,6 +4,8 @@ format:
 	linecheck . --fix
 install:
 	pip install -e .[dev]
+test:
+	pytest reweight/tests/ --maxfail=0
 changelog:
 	build-changelog changelog.yaml --output changelog.yaml --update-last-date --start-from 0.0.1 --append-file changelog_entry.yaml
 	build-changelog changelog.yaml --org PolicyEngine --repo reweight --output CHANGELOG.md --template .github/changelog_template.md
