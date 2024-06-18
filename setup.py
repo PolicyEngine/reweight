@@ -25,14 +25,11 @@ setup(
     license="http://www.fsf.org/licensing/licenses/agpl-3.0.html",
     url="https://github.com/PolicyEngine/reweight",
     include_package_data=True,  # Will read MANIFEST.in
-    data_files=[
-        (
-            ["CHANGELOG.md", "LICENSE", "README.md"],
-        ),
-    ],
     install_requires=[
+        "numpy",
         "pandas",
         "torch",
+        "tensorboard",
     ],
     extras_require={
         "dev": [

@@ -1,0 +1,7 @@
+# TensorBoard runs directory #
+##############################
+runs/
+
+# Compilation information #
+###########################
+reweight.egg-info/
