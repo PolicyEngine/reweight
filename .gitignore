@@ -9,3 +9,7 @@ reweight.egg-info/
 # Python bytecode files #
 #########################
 reweight/tests/__pycache__
+
+# Documentation build files #
+#############################
+docs/_build
