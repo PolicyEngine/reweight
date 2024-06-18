@@ -5,3 +5,7 @@ runs/
 # Compilation information #
 ###########################
 reweight.egg-info/
+
+# Python bytecode files #
+#########################
+reweight/tests/__pycache__
