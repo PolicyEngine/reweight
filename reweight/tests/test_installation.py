@@ -1,5 +1,6 @@
 import pytest
 
+
 def test_imports():
     try:
         import torch

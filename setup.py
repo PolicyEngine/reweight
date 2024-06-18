@@ -30,6 +30,7 @@ setup(
         "pandas",
         "torch",
         "tensorboard",
+        "jupyter-book",
     ],
     extras_require={
         "dev": [
