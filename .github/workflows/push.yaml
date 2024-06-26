@@ -33,8 +33,8 @@ jobs:
           python-version: 3.9
       - name: Build changelog
         run: pip install yaml-changelog && make changelog
-      - name: Make changelog diff script executable
-        run: chmod +x .github/get-changelog-diff.sh
+      - name: Make scripts executable
+        run: chmod -R +x .github/
       - name: Preview changelog update
         run: ".github/get-changelog-diff.sh"
       - name: Update changelog
