@@ -6,6 +6,7 @@ def test_imports():
     except:
         raise AssertionError("Failed to import necessary libraries")
 
+
 def test_install():
     try:
         import reweight
