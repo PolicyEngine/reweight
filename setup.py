@@ -31,6 +31,7 @@ setup(
         "torch",
         "tensorboard",
         "jupyter-book",
+        "pytest",
     ],
     extras_require={
         "dev": [
