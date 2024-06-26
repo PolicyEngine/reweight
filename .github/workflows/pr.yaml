@@ -27,7 +27,7 @@ jobs:
       - name: Build changelog
         run: pip install yaml-changelog>=0.1.7 && make changelog
       - name: Preview changelog update
-        run: ".github/get-changelog-diff.sh"
+        run: .github/get-changelog-diff.sh
       - name: Check version number has been properly updated
         run: .github/is-version-number-acceptable.sh
   Test:
