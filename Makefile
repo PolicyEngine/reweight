@@ -2,6 +2,8 @@ all: build
 format:
 	black . -l 79
 	linecheck . --fix
+documentation:
+	jb build docs
 install:
 	pip install -e .[dev]
 test:
