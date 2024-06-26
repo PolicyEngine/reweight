@@ -26,6 +26,8 @@ jobs:
           python-version: 3.9
       - name: Build changelog
         run: pip install yaml-changelog>=0.1.7 && make changelog
+      - name: Make changelog diff script executable
+        run: chmod +x .github/get-changelog-diff.sh
       - name: Preview changelog update
         run: .github/get-changelog-diff.sh
       - name: Check version number has been properly updated
