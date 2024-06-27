@@ -14,3 +14,5 @@ changelog:
 	bump-version changelog.yaml setup.py
 	rm changelog_entry.yaml || true
 	touch changelog_entry.yaml
+build:
+	python setup.py sdist bdist_wheel
