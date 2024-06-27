@@ -13,3 +13,7 @@ reweight/tests/__pycache__
 # Documentation build files #
 #############################
 docs/_build
+
+# Pycache folder #
+##################
+reweight/__pycache__
