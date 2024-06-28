@@ -1,4 +1,4 @@
-- bump: minor
+- bump: patch
   changes:
     added:
-    - Functionality for TensorBoard, testing for changelog automation.
+      - Changelog bug fixes

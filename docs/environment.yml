@@ -1,0 +1,10 @@
+name: reweight
+channels:
+  - defaults
+dependencies:
+  - numpy
+  - pandas
+  - pip
+  - pytest
+  - pip:
+      - jupyter-book
