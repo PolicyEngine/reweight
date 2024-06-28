@@ -32,6 +32,7 @@ setup(
         "tensorboard",
         "jupyter-book",
         "pytest",
+        "policyengine-core",
     ],
     extras_require={
         "dev": [
