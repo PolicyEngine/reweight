@@ -7,7 +7,7 @@ with open("README.md", "r") as readme_file:
 
 setup(
     name="reweight",
-    version="0.0.1",
+    version="0.1.0",
     author="PolicyEngine",
     author_email="hello@policyengine.org",
     long_description=readme,
@@ -26,10 +26,14 @@ setup(
     url="https://github.com/PolicyEngine/reweight",
     include_package_data=True,  # Will read MANIFEST.in
     install_requires=[
-        "numpy",
+        "numpy<2.0",
         "pandas",
         "torch",
         "tensorboard",
+        "jupyter-book",
+        "pytest",
+        "policyengine-core~=2.21.8",
+        "policyengine-us~=0.794.1",
     ],
     extras_require={
         "dev": [

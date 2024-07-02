@@ -1,4 +1,4 @@
 - bump: minor
   changes:
     added:
-    - Functionality for TensorBoard, testing for changelog automation.
+      - PyTorch testing with Microsimulation datasets
