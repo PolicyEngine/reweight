@@ -1,4 +1,4 @@
-- bump: patch
+- bump: minor
   changes:
     added:
-      - Changelog bug fixes
+      - PyTorch testing with Microsimulation datasets
