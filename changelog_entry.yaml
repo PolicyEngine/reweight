@@ -1,4 +1,0 @@
-- bump: minor
-  changes:
-    added:
-      - PyTorch testing with Microsimulation datasets
