@@ -1,4 +1,4 @@
-- bump: major
+- bump: minor
   changes:
-    added:
-    - PolicyEngine UK testing
+    fixed:
+      - PolicyEngine UK secrets issues
