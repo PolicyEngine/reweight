@@ -26,7 +26,6 @@ setup(
     url="https://github.com/PolicyEngine/reweight",
     include_package_data=True,  # Will read MANIFEST.in
     install_requires=[
-        "os",
         "numpy<2.0",
         "pandas",
         "torch",
