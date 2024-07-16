@@ -17,5 +17,8 @@ def test_install():
 
 def test_secret_usage():
     import os
-    token_not_none = "POLICYENGINE_GITHUB_MICRODATA_AUTH_TOKEN" in os.environ,
+
+    token_not_none = (
+        "POLICYENGINE_GITHUB_MICRODATA_AUTH_TOKEN" in os.environ,
+    )
     assert token_not_none, "Authentication token not found"
