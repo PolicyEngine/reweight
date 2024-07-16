@@ -34,6 +34,7 @@ setup(
         "pytest",
         "policyengine-core~=2.21.8",
         "policyengine-us~=0.794.1",
+        "policyengine-uk",
     ],
     extras_require={
         "dev": [
