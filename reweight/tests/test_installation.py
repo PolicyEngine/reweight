@@ -14,6 +14,7 @@ def test_install():
     except:
         raise AssertionError("Failed to build reweight")
 
+
 """
 def test_secret_usage():
     import os
