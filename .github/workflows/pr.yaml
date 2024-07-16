@@ -47,11 +47,11 @@ jobs:
           python-version: 3.9
       - name: Install package
         run: make install
+      - name: Run tests
+        run: make test
         env:
           POVERTYTRACKER_RAW_URL: ${{ secrets.POVERTYTRACKER_RAW_URL }}
           POLICYENGINE_GITHUB_MICRODATA_AUTH_TOKEN: ${{ secrets.POLICYENGINE_GITHUB_MICRODATA_AUTH_TOKEN}}
-      - name: Run tests
-        run: make test
       - uses: codecov/codecov-action@v3
       - name: Build package
         run: make
