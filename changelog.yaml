@@ -1,15 +1,20 @@
 - changes:
     added:
-      - Basic repo
+    - Basic repo
   date: 2024-06-26 00:00:00
   version: 0.1.0
 - bump: minor
   changes:
     added:
-      - PyTorch testing with Microsimulation datasets
+    - PyTorch testing with Microsimulation datasets
   date: 2024-07-02 13:04:56
 - bump: minor
   changes:
     added:
-      - PolicyEngine UK testing
+    - PolicyEngine UK testing
   date: 2024-07-16 07:44:29
+- bump: minor
+  changes:
+    fixed:
+    - PolicyEngine UK secrets issues
+  date: 2024-07-16 13:02:36
