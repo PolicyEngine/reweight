@@ -14,6 +14,6 @@ reweight/tests/__pycache__
 #############################
 docs/_build
 
-# Pycache folder #
+# Pycache folders #
 ##################
-reweight/__pycache__
+**/__pycache__/
