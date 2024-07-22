@@ -7,7 +7,7 @@ def test_uk_microsimulation():
 
 def test_uk_prototype():
     from policyengine_uk import Microsimulation
-    from reweight.logic import reweight
+    from reweight import reweight
     import torch
 
     sim = Microsimulation()
