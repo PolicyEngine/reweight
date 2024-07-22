@@ -30,4 +30,4 @@ def test_uk_prototype():
     ) = generate_model_variables("frs_2021", 2025)
 
     sim_matrix = torch.tensor(values_df.to_numpy(), dtype=torch.float32)
-    reweight.reweight(household_weights, sim_matrix, targets, targets_array)
+    reweight(household_weights, sim_matrix, targets, targets_array)
