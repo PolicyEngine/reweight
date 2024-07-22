@@ -3,10 +3,18 @@ import numpy as np
 import torch
 from torch.utils.tensorboard import SummaryWriter
 
-def reweight(initial_weights, estimate_matrix, target_names, target_values, epochs = 1000, epoch_step = 100):
+
+def reweight(
+    initial_weights,
+    estimate_matrix,
+    target_names,
+    target_values,
+    epochs=1000,
+    epoch_step=100,
+):
     """
     Main reweighting function, suitable for PolicyEngine UK use (PolicyEngine US use and testing TK)
-    
+
     To avoid the need for equivalisation factors, use relative error:
     |predicted - actual|/actual
 
@@ -27,12 +35,12 @@ def reweight(initial_weights, estimate_matrix, target_names, target_values, epoc
     # Initialize a TensorBoard writer
     writer = SummaryWriter()
 
-    #Create a Torch tensor of log weights
+    # Create a Torch tensor of log weights
     log_weights = torch.log(initial_weights)
     log_weights.requires_grad_()
 
     # estimate_matrix (cross) exp(log_weights) = target_values
-    
+
     optimizer = torch.optim.Adam([log_weights])
 
     # Training loop
@@ -41,7 +49,9 @@ def reweight(initial_weights, estimate_matrix, target_names, target_values, epoc
         # Estimate the targets
         targets_estimate = torch.exp(log_weights) @ estimate_matrix
         # Calculate the loss
-        loss = torch.mean(((targets_estimate - target_values)/target_values) ** 2)
+        loss = torch.mean(
+            ((targets_estimate - target_values) / target_values) ** 2
+        )
 
         writer.add_scalar("Loss/train", loss, epoch)
 
@@ -54,7 +64,7 @@ def reweight(initial_weights, estimate_matrix, target_names, target_values, epoc
         optimizer.step()
 
         # Print loss whenever the epoch number, when one-indexed, is divisible by epoch_step
-        if (epoch+1) % epoch_step == 0:
+        if (epoch + 1) % epoch_step == 0:
             print(f"Epoch {epoch+1}, Loss: {loss.item()}")
 
     writer.flush()
