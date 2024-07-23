@@ -30,7 +30,7 @@ def test_integrated_prototype():
     optimizer = torch.optim.Adam([log_weights])
 
     # Training loop
-    num_epochs = 20_000
+    num_epochs = 1_000
     for epoch in range(num_epochs):
 
         # Estimate the targets
@@ -49,7 +49,7 @@ def test_integrated_prototype():
         optimizer.step()
 
         # Print loss for every 1000 epochs
-        if epoch % 1000 == 0:
+        if epoch % 100 == 0:
             print(f"Epoch {epoch}, Loss: {loss.item()}")
 
     writer.flush()
