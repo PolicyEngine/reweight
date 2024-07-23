@@ -73,3 +73,33 @@ def test_us_prototype():
     print("Final weights:", final_weights)
     print("Final estimates:", final_estimates)
     print("True values:", true_values)
+
+def test_us_microsimulation():
+    from policyengine_us import Microsimulation
+
+    # Create a Microsimulation instance
+    sim = Microsimulation()
+
+
+def test_us_reweight():
+    from policyengine_us import Microsimulation
+    from reweight import reweight
+    import torch
+
+    sim = Microsimulation()
+
+    from policyengine_us.data.datasets.cps.enhanced_cps.loss import generate_model_variables
+
+    (
+        household_weights,
+        weight_adjustment,
+        values_df,
+        targets,
+        targets_array,
+        equivalisation_factors_array,
+    ) = generate_model_variables("cps_2021", 2025)
+
+    sim_matrix = torch.tensor(values_df.to_numpy(), dtype=torch.float32)
+    weights_tensor = torch.tensor(household_weights, dtype=torch.float32)
+    targets_tensor = torch.tensor(targets_array, dtype=torch.float32)
+    reweight(weights_tensor, sim_matrix, targets, targets_tensor)
