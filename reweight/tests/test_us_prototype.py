@@ -74,6 +74,7 @@ def test_us_prototype():
     print("Final estimates:", final_estimates)
     print("True values:", true_values)
 
+
 def test_us_microsimulation():
     from policyengine_us import Microsimulation
 
@@ -88,7 +89,9 @@ def test_us_reweight():
 
     sim = Microsimulation()
 
-    from policyengine_us.data.datasets.cps.enhanced_cps.loss import generate_model_variables
+    from policyengine_us.data.datasets.cps.enhanced_cps.loss import (
+        generate_model_variables,
+    )
 
     (
         household_weights,
