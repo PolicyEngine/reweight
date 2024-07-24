@@ -2,3 +2,5 @@ format: jb-book
 root: index.md
 chapters:
   - file: current-features
+  - file: testing_notebooks/us-notebook
+  - file: testing_notebooks/uk-notebook
