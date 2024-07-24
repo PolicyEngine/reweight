@@ -15,5 +15,9 @@ reweight/tests/__pycache__
 docs/_build
 
 # Pycache folders #
-##################
+###################
 **/__pycache__/
+
+# Testing notebooks #
+#####################
+/*.ipynb
