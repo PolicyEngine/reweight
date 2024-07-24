@@ -35,6 +35,7 @@ setup(
         "policyengine-core~=2.21.8",
         "policyengine-us~=0.794.1",
         "policyengine-uk",
+        "survey_enhance",
     ],
     extras_require={
         "dev": [
