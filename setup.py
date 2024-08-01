@@ -28,7 +28,7 @@ setup(
     install_requires=[
         "numpy<2.0",
         "pandas",
-        "torch",
+        "torch+cpu",
         "tensorboard",
         "jupyter-book",
         "pytest",
