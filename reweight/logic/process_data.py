@@ -81,7 +81,7 @@ api_url = "https://api.github.com/repos/PolicyEngine/reweight/releases"
 
 owner = "pmberg"
 repo = "reweight"
-token = os.environ.get("GITHUB_TOKEN")
+token = os.environ.get("API_GITHUB_TOKEN")
 
 # Create release
 headers = {

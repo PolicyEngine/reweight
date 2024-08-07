@@ -22,3 +22,7 @@ jobs:
         run: make install
       - name: Run data processing script
         run: python reweight/logic/process_data.py
+        env:
+          POVERTYTRACKER_RAW_URL: ${{ secrets.POVERTYTRACKER_RAW_URL }}
+          POLICYENGINE_GITHUB_MICRODATA_AUTH_TOKEN: ${{ secrets.POLICYENGINE_GITHUB_MICRODATA_AUTH_TOKEN}}
+          API_GITHUB_TOKEN: ${{ secrets.API_GITHUB_TOKEN }}
