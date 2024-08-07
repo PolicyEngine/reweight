@@ -22,3 +22,7 @@ docs/_build
 #####################
 /*.ipynb
 /test_*
+
+# Temporary CSV files #
+#######################
+/*.csv
