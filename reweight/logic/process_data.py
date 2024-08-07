@@ -7,6 +7,7 @@ import requests
 import base64
 
 import policyengine_uk
+from policyengine_uk import Microsimulation
 from policyengine_uk.data import RawFRS_2021_22
 from policyengine_uk.data.datasets.frs.calibration.calibrate import (
     generate_model_variables,
@@ -15,6 +16,7 @@ from policyengine_uk.data.datasets.frs.calibration.calibrate import (
 from reweight import reweight
 
 # UK dataframe generation.
+sim = Microsimulation()
 
 RawFRS_2021_22().download()
 
