@@ -21,3 +21,8 @@ docs/_build
 # Testing notebooks #
 #####################
 /*.ipynb
+/test_*
+
+# Temporary CSV files #
+#######################
+/*.csv

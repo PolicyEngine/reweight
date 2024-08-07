@@ -1,0 +1,28 @@
+name: Scheduled Data Processing
+
+on:
+  schedule:
+    - cron: "0 0 1 * *" # Runs at 00:00 on the first day of every month
+  push:
+    branches: [main] # Runs on pushes to the main branch
+  pull_request:
+    branches: [main] # Runs on pull requests to the main branch
+
+jobs:
+  process_data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: make install
+      - name: Run data processing script
+        run: python reweight/logic/process_data.py
+        env:
+          POVERTYTRACKER_RAW_URL: ${{ secrets.POVERTYTRACKER_RAW_URL }}
+          POLICYENGINE_GITHUB_MICRODATA_AUTH_TOKEN: ${{ secrets.POLICYENGINE_GITHUB_MICRODATA_AUTH_TOKEN}}
+          API_GITHUB_TOKEN: ${{ secrets.API_GITHUB_TOKEN }}
