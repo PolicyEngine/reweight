@@ -6,5 +6,10 @@ dependencies:
   - pandas
   - pip
   - pytest
+  - torch
+  - policyengine_core
+  - policyengine_us
+  - policyengine_uk
+  - matplotlib
   - pip:
       - jupyter-book

@@ -43,6 +43,14 @@ def reweight(
 
     optimizer = torch.optim.Adam([log_weights])
 
+    # Report the initial loss:
+    targets_estimate = torch.exp(log_weights) @ estimate_matrix
+    # Calculate the loss
+    loss = torch.mean(
+        ((targets_estimate - target_values) / target_values) ** 2
+    )
+    print(f"Initial loss: {loss.item()}")
+
     # Training loop
     for epoch in range(epochs):
 
