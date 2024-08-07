@@ -21,3 +21,4 @@ docs/_build
 # Testing notebooks #
 #####################
 /*.ipynb
+/test_*
