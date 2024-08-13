@@ -9,32 +9,23 @@ import base64
 import policyengine_uk
 from policyengine_uk import Microsimulation
 from policyengine_uk.data import RawFRS_2021_22
-from policyengine_uk.data.datasets.frs.calibration.calibrate import (
-    generate_model_variables,
-)
+from policyengine_uk.data.datasets.frs.calibration.calibrate import generate_model_variables as uk_generate
 
-def calibrate_country_weights(
-    household_weights, loss_matrix, target_labels, target_values, epochs
-) -> pd.DataFrame:
-    pass
-
-
-uk_inputs = ...
-us_inputs = ...
-
-calibrate_country_weights(*uk_inputs)
-calibrate_country_weights(*us_inputs)
+import policyengine_us
+from policyengine_us.data.datasets.cps.enhanced_cps.loss import generate_model_variables as us_generate
 
 from reweight import reweight
 
-# UK dataframe generation.
-sim = Microsimulation()
+def generate_country_weights(year, data_source, generate_func):
+    """
+    Parameters:
+    year (int): The year for which these country values are generated.
+    data_source (str): The name of the data source for that country.
+    generate_func (function): The function used to generate the initial values.
 
-RawFRS_2021_22().download()
-
-uk_weights_df = pd.DataFrame()
-
-for year in range(2024, 2029):
+    Returns:
+    final_weights (torch.Tensor): a PyTorch tensor of final reweighted weights.
+    """
     (
         household_weights,
         weight_adjustment,
@@ -42,50 +33,37 @@ for year in range(2024, 2029):
         targets,
         targets_array,
         equivalisation_factors_array,
-    ) = generate_model_variables("frs_2021", year)
-    sim_matrix = torch.tensor(values_df.to_numpy(), dtype=torch.float32)
-    uk_final_weights = reweight(
-        household_weights, sim_matrix, targets, targets_array, epochs=1_000
-    )
-    uk_weight_series = pd.Series(uk_final_weights.numpy())
-    uk_weights_df[str(year)] = uk_weight_series
-
-
-csv_filename = "updated_uk_weights.csv"
-uk_weights_df.to_csv(csv_filename)
-
-
-# US dataframe generation.
-
-import policyengine_us
-from policyengine_us.data.datasets.cps.enhanced_cps.loss import (
-    generate_model_variables,
-)
-
-us_weights_df = pd.DataFrame()
-
-for year in range(2024, 2029):
-    (
-        household_weights,
-        weight_adjustment,
-        values_df,
-        targets,
-        targets_array,
-        equivalisation_factors_array,
-    ) = generate_model_variables("cps_2021", year)
+    ) = generate_func(data_source, year)
     sim_matrix = torch.tensor(values_df.to_numpy(), dtype=torch.float32)
     initial_weights = torch.tensor(household_weights, dtype=torch.float32)
     targets_tensor = torch.tensor(targets_array, dtype=torch.float32)
-    us_final_weights = reweight(
+    final_weights = reweight(
         initial_weights, sim_matrix, targets, targets_tensor, epochs=1_000
     )
-    us_weight_series = pd.Series(us_final_weights.numpy())
-    us_weights_df[str(year)] = us_weight_series
+    return final_weights
 
-# Now, for testing, save these dataframes as CSV.
+def generate_country_csv(start_year, end_year, data_source, generate_func, csv_filename):
+    """
+    Parameters:
+    start_year (int): The year for which these country values start generating (inclusive).
+    end_year (int): The year for which these country values stop generating (non-inclusive).
+    data_source (str): The name of the data source for that country.
+    generate_func (function): The function used to generate the initial values.
+    csv_filename (str): The name of the file which the generated data are saved under.
 
-csv_filename = "updated_us_weights.csv"
-us_weights_df.to_csv(csv_filename)
+    Returns:
+    None. Generates and saves a CSV file of reweighted weights.
+    """
+    weights_df = pd.DataFrame()
+    for year in range(start_year, end_year):
+        final_weights = generate_country_weights(year, data_source, generate_func)
+        weight_series = pd.Series(final_weights.numpy())
+        weights_df[str(year)] = weight_series
+    weights_df.to_csv(csv_filename)
+
+RawFRS_2021_22().download()
+generate_country_csv(2024, 2029, "frs_2021", uk_generate, "updated_uk_weights.csv")
+generate_country_csv(2024, 2029, "cps_2021", us_generate, "updated_us_weights.csv")
 
 # Now, create a GitHub release
 
@@ -109,7 +87,7 @@ response = requests.post(
     api_url.format(owner=owner, repo=repo), headers=headers, json=release_data
 )
 release = response.json()
-
+print(release)
 # Upload assets
 upload_url = release["upload_url"].split("{")[0]
 
