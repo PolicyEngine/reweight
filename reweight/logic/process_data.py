@@ -13,6 +13,18 @@ from policyengine_uk.data.datasets.frs.calibration.calibrate import (
     generate_model_variables,
 )
 
+def calibrate_country_weights(
+    household_weights, loss_matrix, target_labels, target_values, epochs
+) -> pd.DataFrame:
+    pass
+
+
+uk_inputs = ...
+us_inputs = ...
+
+calibrate_country_weights(*uk_inputs)
+calibrate_country_weights(*us_inputs)
+
 from reweight import reweight
 
 # UK dataframe generation.
