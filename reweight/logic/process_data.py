@@ -9,12 +9,17 @@ import base64
 import policyengine_uk
 from policyengine_uk import Microsimulation
 from policyengine_uk.data import RawFRS_2021_22
-from policyengine_uk.data.datasets.frs.calibration.calibrate import generate_model_variables as uk_generate
+from policyengine_uk.data.datasets.frs.calibration.calibrate import (
+    generate_model_variables as uk_generate,
+)
 
 import policyengine_us
-from policyengine_us.data.datasets.cps.enhanced_cps.loss import generate_model_variables as us_generate
+from policyengine_us.data.datasets.cps.enhanced_cps.loss import (
+    generate_model_variables as us_generate,
+)
 
 from reweight import reweight
+
 
 def generate_country_weights(year, data_source, generate_func):
     """
@@ -42,7 +47,10 @@ def generate_country_weights(year, data_source, generate_func):
     )
     return final_weights
 
-def generate_country_csv(start_year, end_year, data_source, generate_func, csv_filename):
+
+def generate_country_csv(
+    start_year, end_year, data_source, generate_func, csv_filename
+):
     """
     Parameters:
     start_year (int): The year for which these country values start generating (inclusive).
@@ -56,14 +64,21 @@ def generate_country_csv(start_year, end_year, data_source, generate_func, csv_f
     """
     weights_df = pd.DataFrame()
     for year in range(start_year, end_year):
-        final_weights = generate_country_weights(year, data_source, generate_func)
+        final_weights = generate_country_weights(
+            year, data_source, generate_func
+        )
         weight_series = pd.Series(final_weights.numpy())
         weights_df[str(year)] = weight_series
     weights_df.to_csv(csv_filename)
 
+
 RawFRS_2021_22().download()
-generate_country_csv(2024, 2029, "frs_2021", uk_generate, "updated_uk_weights.csv")
-generate_country_csv(2024, 2029, "cps_2021", us_generate, "updated_us_weights.csv")
+generate_country_csv(
+    2024, 2029, "frs_2021", uk_generate, "updated_uk_weights.csv"
+)
+generate_country_csv(
+    2024, 2029, "cps_2021", us_generate, "updated_us_weights.csv"
+)
 
 # Now, create a GitHub release
 
