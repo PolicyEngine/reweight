@@ -3,6 +3,11 @@ on:
   release:
     types: [published]
   workflow-dispatch:
+    inputs:
+    reason:
+      description: "Reason for manual trigger"
+      required: true
+      default: "Testing workflow"
 jobs:
   pypi:
     runs-on: ubuntu-latest
