@@ -41,6 +41,8 @@ setup(
         "dev": [
             "black",
             "yaml-changelog",
+            "setuptools",
+            "setuptools_scm",
         ],
     },
     # Windows CI requires Python 3.9.
