@@ -1,3 +1,3 @@
 # Main codebase
 
-This directory will contain logic used by the reweight library for PolicyEngine.
+This directory contains logic used by the reweight library for PolicyEngine, including the `reweight.py` reweighting function and the `process_data.py` automated data generation script.

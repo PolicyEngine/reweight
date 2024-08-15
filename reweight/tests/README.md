@@ -1,3 +1,3 @@
-# Main codebase
+# Tests
 
-This directory will contain the main codebase for the reweight library for PolicyEngine.
+This directory contains tests for the reweight library for PolicyEngine, including tests of both helper functions and installation sequences.
