@@ -6,14 +6,14 @@ with open("README.md", "r") as readme_file:
     readme = readme_file.read()
 
 setup(
-    name="reweight",
-    version="0.3.0",
+    name="policyengine-reweight",
+    version="0.4.0",
     author="PolicyEngine",
     author_email="hello@policyengine.org",
     long_description=readme,
     long_description_content_type="text/markdown",
     classifiers=[
-        "Development Status :: 1 - Planning",
+        "Development Status :: 4 - Beta",
         "License :: OSI Approved :: GNU Affero General Public License v3",
         "Operating System :: POSIX",
         "Programming Language :: Python",
@@ -41,6 +41,8 @@ setup(
         "dev": [
             "black",
             "yaml-changelog",
+            "setuptools",
+            "setuptools_scm",
         ],
     },
     # Windows CI requires Python 3.9.

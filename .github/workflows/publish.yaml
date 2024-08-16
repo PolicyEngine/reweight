@@ -1,0 +1,32 @@
+name: Publish to PyPI.org
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+    reason:
+      description: "Reason for manual trigger"
+      required: true
+      default: "Testing workflow"
+jobs:
+  pypi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+      - name: Install package
+        run: make install
+      - name: Build package
+        run: make
+      - name: Publish a Python distribution to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI }}
+          skip-existing: true
