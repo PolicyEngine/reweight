@@ -6,7 +6,7 @@ with open("README.md", "r") as readme_file:
     readme = readme_file.read()
 
 setup(
-    name="policyengine_reweight",
+    name="policyengine-reweight",
     version="0.4.0",
     author="PolicyEngine",
     author_email="hello@policyengine.org",
