@@ -1,3 +1,15 @@
+import pytest
+
+
+def microsimulation_or_skip(microsimulation_class):
+    try:
+        return microsimulation_class()
+    except ValueError as error:
+        if "requires an explicit dataset" in str(error):
+            pytest.skip(str(error))
+        raise
+
+
 def test_us_prototype():
     from policyengine_us import Microsimulation, Simulation
     import numpy as np
@@ -8,7 +20,7 @@ def test_us_prototype():
     writer = SummaryWriter()
 
     # Create a Microsimulation instance
-    sim = Microsimulation()
+    sim = microsimulation_or_skip(Microsimulation)
 
     # Compute income and payroll taxes. These are MicroSeries objects from the microdf library
     income_tax_microseries = sim.calculate(
@@ -79,7 +91,7 @@ def test_us_microsimulation():
     from policyengine_us import Microsimulation
 
     # Create a Microsimulation instance
-    sim = Microsimulation()
+    sim = microsimulation_or_skip(Microsimulation)
 
 
 def test_us_reweight():
@@ -87,11 +99,12 @@ def test_us_reweight():
     from reweight import reweight
     import torch
 
-    sim = Microsimulation()
+    sim = microsimulation_or_skip(Microsimulation)
 
-    from policyengine_us.data.datasets.cps.enhanced_cps.loss import (
-        generate_model_variables,
+    loss_module = pytest.importorskip(
+        "policyengine_us.data.datasets.cps.enhanced_cps.loss"
     )
+    generate_model_variables = loss_module.generate_model_variables
 
     (
         household_weights,
