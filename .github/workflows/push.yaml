@@ -9,7 +9,7 @@ jobs:
       (github.repository == 'PolicyEngine/reweight')
       && (github.event.head_commit.message == 'Update reweight')
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
       - name: Check formatting
         uses: "lgeiger/black-action@master"
         with:
@@ -24,9 +24,9 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: 3.9
       - name: Install package
@@ -36,7 +36,7 @@ jobs:
         env:
           POVERTYTRACKER_RAW_URL: ${{ secrets.POVERTYTRACKER_RAW_URL }}
           POLICYENGINE_GITHUB_MICRODATA_AUTH_TOKEN: ${{ secrets.POLICYENGINE_GITHUB_MICRODATA_AUTH_TOKEN}}
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v6
       - name: Test documentation builds
         if: matrix.os == 'ubuntu-latest'
         run: make documentation
@@ -54,9 +54,9 @@ jobs:
       && (github.event.head_commit.message == 'Update reweight')
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: 3.9
       - name: Publish a git tag
