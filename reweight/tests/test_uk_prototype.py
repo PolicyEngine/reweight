@@ -1,8 +1,20 @@
+import pytest
+
+
+def microsimulation_or_skip(microsimulation_class):
+    try:
+        return microsimulation_class()
+    except ValueError as error:
+        if "requires an explicit dataset" in str(error):
+            pytest.skip(str(error))
+        raise
+
+
 def test_uk_microsimulation():
     from policyengine_uk import Microsimulation
 
     # Create a Microsimulation instance
-    sim = Microsimulation()
+    sim = microsimulation_or_skip(Microsimulation)
 
 
 def test_uk_reweight():
@@ -10,15 +22,17 @@ def test_uk_reweight():
     from reweight import reweight
     import torch
 
-    sim = Microsimulation()
+    sim = microsimulation_or_skip(Microsimulation)
 
-    from policyengine_uk.data import RawFRS_2021_22
+    data_module = pytest.importorskip("policyengine_uk.data")
+    RawFRS_2021_22 = data_module.RawFRS_2021_22
 
     RawFRS_2021_22().download()
 
-    from policyengine_uk.data.datasets.frs.calibration.calibrate import (
-        generate_model_variables,
+    calibration_module = pytest.importorskip(
+        "policyengine_uk.data.datasets.frs.calibration.calibrate"
     )
+    generate_model_variables = calibration_module.generate_model_variables
 
     (
         household_weights,

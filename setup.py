@@ -26,14 +26,14 @@ setup(
     url="https://github.com/PolicyEngine/reweight",
     include_package_data=True,  # Will read MANIFEST.in
     install_requires=[
-        "numpy<2.0",
+        "numpy",
         "pandas",
         "torch",
         "tensorboard",
         "jupyter-book",
         "pytest",
-        "policyengine-core~=2.21.8",
-        "policyengine-us~=0.794.1",
+        "policyengine-core",
+        "policyengine-us==1.667.1",
         "policyengine-uk",
         "survey_enhance",
     ],
