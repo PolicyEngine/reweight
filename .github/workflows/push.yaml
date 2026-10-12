@@ -49,6 +49,12 @@ jobs:
           FOLDER: docs/_build/html
   Publish:
     runs-on: ubuntu-latest
+    # PyPI trusted publishing: uploads accepted only from this workflow in the
+    # pypi environment (limited to main). No stored token.
+    environment: pypi
+    permissions:
+      contents: write # publish-git-tag.sh pushes the version tag
+      id-token: write
     if: |
       (github.repository == 'PolicyEngine/reweight')
       && (github.event.head_commit.message == 'Update reweight')
@@ -68,6 +74,4 @@ jobs:
       - name: Publish a Python distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          user: __token__
-          password: ${{ secrets.PYPI }}
           skip-existing: true
